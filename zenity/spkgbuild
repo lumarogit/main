@@ -1,0 +1,13 @@
+# description	: Display graphical dialog boxes from shell scripts
+# depends	: libnotify yelp-tools meson
+
+name=zenity
+version=4.0.0
+release=1
+source="https://ftp.gnome.org/pub/gnome/sources/zenity/${version%.*}/zenity-$version.tar.xz"
+
+build() {
+	venom-meson $name-$version build 
+	meson compile -C build
+	DESTDIR=$PKG meson install --no-rebuild -C build
+}
